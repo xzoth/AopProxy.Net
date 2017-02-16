@@ -7,8 +7,8 @@
     <ProjectGuid>{83CFA4D8-45DC-4AF2-AF8C-74EF37B05B08}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AopProxy.NET</RootNamespace>
-    <AssemblyName>AopProxy.NET</AssemblyName>
+    <RootNamespace>AopProxy</RootNamespace>
+    <AssemblyName>AopProxy</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AopProxy.cs" />
+    <Compile Include="AopProxyFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
