@@ -8,5 +8,10 @@ namespace Demo
     public interface ILogic
     {
         int Add(int a, int b);
+
+        int Result
+        {
+            get;
+        }
     }
 }

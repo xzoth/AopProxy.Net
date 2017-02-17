@@ -41,7 +41,16 @@
   <ItemGroup>
     <Compile Include="AopProxy.cs" />
     <Compile Include="AopProxyFactory.cs" />
+    <Compile Include="AOP\IAdvice.cs" />
+    <Compile Include="AOP\IAroundAdvice.cs" />
+    <Compile Include="AOP\IThrowsAdvice.cs" />
+    <Compile Include="AOP\IPointCut.cs" />
+    <Compile Include="Attribute\JoinPointAttribute.cs" />
+    <Compile Include="Attribute\PointCutAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Config\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

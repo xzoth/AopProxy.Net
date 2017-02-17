@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AopProxy.AOP;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -8,7 +9,12 @@ namespace AopProxy
 {
     public class AopProxyFactory
     {
-        public static T GetProxyByType<T>()
+        public static T GetProxy<T>()
+        {
+            return GetProxy<T>(false);
+        }
+
+        public static T GetProxy<T>(bool isSingle)
         {
             Type interfaceType = typeof(T);
             if (!interfaceType.IsInterface)
@@ -31,6 +37,11 @@ namespace AopProxy
             {
                 return default(T);
             }
+        }
+
+        public static void AddAdvice(IAdvice advice, IPointCut pointCut)
+        {
+
         }
     }
 }

@@ -11,7 +11,16 @@ namespace Demo
 
         public int Add(int a, int b)
         {
-            return a + b;
+            return result = a + b;
+        }
+
+        int result;
+        public int Result
+        {
+            get
+            {
+                return result;
+            }
         }
     }
 }
