@@ -1,6 +1,6 @@
 #AopProxy.NET
 
-A simple AOP .NET component make by RealProxy
+A simple .NET AOP component that make by dynamic proxy.
 ----
 
 ##Requirements
