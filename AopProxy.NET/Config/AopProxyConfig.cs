@@ -12,6 +12,6 @@ namespace AopProxy.Config
             PointCut = new List<PointCutConfig>();
         }
 
-        List<PointCutConfig> PointCut { get; set; }
+        public List<PointCutConfig> PointCut { get; set; }
     }
 }

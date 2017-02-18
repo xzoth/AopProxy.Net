@@ -10,6 +10,6 @@ namespace AopProxy.AOP
     {
         void BeforeInvoke(MethodInfo methodInfo, object[] args, object target);
 
-        object AfterInvoke(MethodInfo methodInfo, object[] args, object target);
+        void AfterInvoke(MethodInfo methodInfo, object[] args, object target);
     }
 }

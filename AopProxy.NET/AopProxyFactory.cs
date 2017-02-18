@@ -1,4 +1,5 @@
 ﻿using AopProxy.AOP;
+using AopProxy.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,8 @@ namespace AopProxy
             {
                 var instance = (T)Activator.CreateInstance(types[0]);
                 AopProxy<T> proxy = new AopProxy<T>(instance);
+
+                proxy.AfterInvoke += Proxy_AfterInvoke;
                 return (T)proxy.GetTransparentProxy();
             }
             else
@@ -39,9 +42,25 @@ namespace AopProxy
             }
         }
 
+        private static void Proxy_AfterInvoke(MethodInfo methodInfo, object returnValue, object targetInstance)
+        {
+            //TODO: 缓存目标实例和相关元数据以加强性能
+
+            //IMethodCallMessage methodCallMessage = message as IMethodCallMessage;
+            ////TODO: 移除LAMBDA表达式以降低对framework版本的要求
+            //Type[] argsType = methodCallMessage.MethodBase.GetParameters().Select(t => t.ParameterType).ToArray();
+
+            //Type targetType = targetInstance.GetType();
+            //var methodInfo = targetType.GetMethod(methodCallMessage.MethodBase.Name, argsType);
+            //var attributes = methodInfo.GetCustomAttributes(typeof(JoinPointAttribute), true);
+        }
+
+        public AopProxyConfig Config { get; set; }
+
         public static void AddAdvice(IAdvice advice, IPointCut pointCut)
         {
 
         }
+
     }
 }

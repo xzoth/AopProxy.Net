@@ -1,4 +1,6 @@
-﻿using AopProxy.Attribute;
+﻿using AopProxy.AOP;
+using AopProxy.Attribute;
+using AopProxy.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,75 +11,76 @@ using System.Text;
 
 namespace AopProxy
 {
+    public delegate void BeforeInvokeEventHandler(MethodInfo methodInfo, object[] args, object targetInstance);
+    public delegate void AfterInvokeEventHandler(MethodInfo methodInfo, object returnValue, object targetInstance);
+    public delegate void ExceptionEventHandler(MethodInfo methodInfo, Exception e, object targetInstance);
+
     public class AopProxy<T> : RealProxy
     {
-        private T targetInstance;
+        public event BeforeInvokeEventHandler BeforeInvoke;
+        public event AfterInvokeEventHandler AfterInvoke;
+        public event ExceptionEventHandler Exception;
 
         public AopProxy(T targetInstance)
             : base(typeof(T))
         {
             this.targetInstance = targetInstance;
+
+            BeforeInvoke += OnBeforeInvoke;
+            AfterInvoke += OnAfterInvoke;
         }
 
-        public T GetTargetInstance()
+        public void RaiseAfterInvokeEvent(MethodInfo methodInfo, object returnValue)
         {
-            return targetInstance;
+            AfterInvoke(methodInfo, returnValue, targetInstance);
         }
 
-        public T GetProxy()
+        protected virtual void OnAfterInvoke(MethodInfo methodInfo, object returnValue, object targetInstance)
         {
-            return targetInstance;
+
         }
 
-        /// <summary>
-        /// 拦截所有方法的调用；
-        /// </summary>
-        /// <param name="message"></param>
-        /// <returns></returns>
+        public void RaiseBeforeInvokeEvent(MethodInfo methodInfo, object[] args)
+        {
+            BeforeInvoke(methodInfo, args, targetInstance);
+        }
+
+        protected virtual void OnBeforeInvoke(MethodInfo methodInfo, object[] args, object targetInstance)
+        {
+
+        }
+
+        private T targetInstance;
+        public T TargetInstance
+        {
+            get
+            {
+                return targetInstance;
+            }
+        }
+
         public override IMessage Invoke(IMessage message)
         {
             IMethodCallMessage methodCallMessage = message as IMethodCallMessage;
-            //TODO: 移除LAMBDA表达式以降低对framework版本的要求
-            Type[] argsType = methodCallMessage.MethodBase.GetParameters().Select(t => t.ParameterType).ToArray();
-
-            Type targetType = targetInstance.GetType();
-            var methodInfo = targetType.GetMethod(methodCallMessage.MethodBase.Name, argsType);
-            var attributes = methodInfo.GetCustomAttributes(typeof(JoinPointAttribute), true);
-            if (attributes != null && attributes.Length > 0)
-            {
-                
-            }
-            else
-            {
-
-            }
-
-            BeforeInvoke(methodCallMessage.MethodBase);
-
+            MethodInfo mInfo = methodCallMessage.MethodBase as MethodInfo;
+            object returnValue = null;
             try
             {
-                object retValue = methodCallMessage.MethodBase.Invoke(targetInstance, methodCallMessage.Args);
-                return new ReturnMessage(retValue, methodCallMessage.Args, methodCallMessage.ArgCount - methodCallMessage.InArgCount, methodCallMessage.LogicalCallContext, methodCallMessage);
+                
+                RaiseBeforeInvokeEvent(mInfo, methodCallMessage.Args);
+                returnValue = methodCallMessage.MethodBase.Invoke(targetInstance, methodCallMessage.Args);
+
+                return new ReturnMessage(returnValue, methodCallMessage.Args, methodCallMessage.ArgCount - methodCallMessage.InArgCount, methodCallMessage.LogicalCallContext, methodCallMessage);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                return new ReturnMessage(ex, methodCallMessage);
+                //TODO 异常处理
+                return new ReturnMessage(e.InnerException, methodCallMessage);
             }
             finally
             {
-                //调用后处理；
-                AfterInvoke(methodCallMessage.MethodBase);
+                RaiseAfterInvokeEvent(mInfo, returnValue);
             }
-        }
-
-        private void BeforeInvoke(MethodBase method)
-        {
-            Console.WriteLine("Before Invoke {0}::{1}", targetInstance.GetType().FullName, method.ToString());
-        }
-
-        private void AfterInvoke(MethodBase method)
-        {
-            Console.WriteLine("After Invoke {0}::{1}", targetInstance.GetType().FullName, method.ToString());
         }
     }
 }
