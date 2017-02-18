@@ -5,6 +5,7 @@ using System.Text;
 
 namespace AopProxy.Attribute
 {
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property, AllowMultiple = true, Inherited = true)]
     public class JoinPointAttribute : System.Attribute
     {
     }

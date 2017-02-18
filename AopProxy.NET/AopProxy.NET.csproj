@@ -45,12 +45,16 @@
     <Compile Include="AOP\IAroundAdvice.cs" />
     <Compile Include="AOP\IThrowsAdvice.cs" />
     <Compile Include="AOP\IPointCut.cs" />
+    <Compile Include="Attribute\AroundAttribute.cs" />
     <Compile Include="Attribute\JoinPointAttribute.cs" />
-    <Compile Include="Attribute\PointCutAttribute.cs" />
+    <Compile Include="Attribute\ThrowsAttribute.cs" />
+    <Compile Include="Config\AdviceConfig.cs" />
+    <Compile Include="Config\AopProxyConfig.cs" />
+    <Compile Include="Config\PointCutConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Config\" />
+    <None Include="Config\AopProxy.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

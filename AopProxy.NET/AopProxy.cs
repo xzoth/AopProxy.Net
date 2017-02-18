@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AopProxy.Attribute;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -10,53 +11,73 @@ namespace AopProxy
 {
     public class AopProxy<T> : RealProxy
     {
-        private T transparentProxy;
+        private T targetInstance;
 
-        public AopProxy(T transparentProxy)
+        public AopProxy(T targetInstance)
             : base(typeof(T))
         {
-            this.transparentProxy = transparentProxy;
+            this.targetInstance = targetInstance;
+        }
+
+        public T GetTargetInstance()
+        {
+            return targetInstance;
         }
 
         public T GetProxy()
         {
-            return transparentProxy;
+            return targetInstance;
         }
 
         /// <summary>
         /// 拦截所有方法的调用；
         /// </summary>
-        /// <param name="msg"></param>
+        /// <param name="message"></param>
         /// <returns></returns>
-        public override IMessage Invoke(IMessage msg)
+        public override IMessage Invoke(IMessage message)
         {
-            IMethodCallMessage callMsg = msg as IMethodCallMessage;
-            BeforeInvoke(callMsg.MethodBase);
+            IMethodCallMessage methodCallMessage = message as IMethodCallMessage;
+            //TODO: 移除LAMBDA表达式以降低对framework版本的要求
+            Type[] argsType = methodCallMessage.MethodBase.GetParameters().Select(t => t.ParameterType).ToArray();
+
+            Type targetType = targetInstance.GetType();
+            var methodInfo = targetType.GetMethod(methodCallMessage.MethodBase.Name, argsType);
+            var attributes = methodInfo.GetCustomAttributes(typeof(JoinPointAttribute), true);
+            if (attributes != null && attributes.Length > 0)
+            {
+                
+            }
+            else
+            {
+
+            }
+
+            BeforeInvoke(methodCallMessage.MethodBase);
 
             try
             {
-                object retValue = callMsg.MethodBase.Invoke(transparentProxy, callMsg.Args);
-                return new ReturnMessage(retValue, callMsg.Args, callMsg.ArgCount - callMsg.InArgCount, callMsg.LogicalCallContext, callMsg);
+                object retValue = methodCallMessage.MethodBase.Invoke(targetInstance, methodCallMessage.Args);
+                return new ReturnMessage(retValue, methodCallMessage.Args, methodCallMessage.ArgCount - methodCallMessage.InArgCount, methodCallMessage.LogicalCallContext, methodCallMessage);
             }
             catch (Exception ex)
             {
-                return new ReturnMessage(ex, callMsg);
+                return new ReturnMessage(ex, methodCallMessage);
             }
             finally
             {
                 //调用后处理；
-                AfterInvoke(callMsg.MethodBase);
+                AfterInvoke(methodCallMessage.MethodBase);
             }
         }
 
         private void BeforeInvoke(MethodBase method)
         {
-            Console.WriteLine("Before Invoke {0}::{1}", transparentProxy.GetType().FullName, method.ToString());
+            Console.WriteLine("Before Invoke {0}::{1}", targetInstance.GetType().FullName, method.ToString());
         }
 
         private void AfterInvoke(MethodBase method)
         {
-            Console.WriteLine("After Invoke {0}::{1}", transparentProxy.GetType().FullName, method.ToString());
+            Console.WriteLine("After Invoke {0}::{1}", targetInstance.GetType().FullName, method.ToString());
         }
     }
 }

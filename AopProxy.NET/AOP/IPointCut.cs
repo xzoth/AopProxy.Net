@@ -8,8 +8,7 @@ namespace AopProxy.AOP
 {
     public interface IPointCut
     {
-        IAdvice Advice { get; set; }
-
-        JoinPointAttribute JointPoint { get; set; }
+        JoinPointAttribute JoinPoint { get; set; }
+        IAdvice[] Advice { get; set; }
     }
 }

@@ -8,6 +8,6 @@ namespace AopProxy.AOP
 {
     public interface IAdvice
     {
-        
+        object Invoke(MethodInfo methodInfo, object[] args, object target);
     }
 }

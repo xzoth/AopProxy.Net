@@ -8,6 +8,6 @@ namespace AopProxy.AOP
 {
     public interface IThrowsAdvice : IAdvice
     {
-        void OnThrow(MethodInfo methodInfo, object[] args, object target, Exception e);
+        void OnException(MethodInfo methodInfo, object[] args, object target, Exception e);
     }
 }

@@ -8,6 +8,8 @@ namespace AopProxy.AOP
 {
     public interface IAroundAdvice
     {
-        object Invoke(MethodInfo methodInfo, object[] args, object target);
+        void BeforeInvoke(MethodInfo methodInfo, object[] args, object target);
+
+        object AfterInvoke(MethodInfo methodInfo, object[] args, object target);
     }
 }
