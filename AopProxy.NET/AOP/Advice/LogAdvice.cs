@@ -9,18 +9,19 @@ namespace AopProxy.AOP.Advice
     {
         public override void BeforeInvoke(InterceptorContext context)
         {
-            Console.WriteLine(string.Format("Before Invoke in {0}::{1}", context.MethodInfo.Name));
+            Console.WriteLine(string.Format("Before Invoke in {0}", context.MethodInfo.Name));
         }
 
         public override object Invoke(InterceptorContext context)
         {
-            return base.Invoke(context);
+            object returnValue = context.Invoke();
+            Console.WriteLine(string.Format("Go in Method, return {0}", returnValue));
+            return returnValue;
         }
 
         public override void AfterInvoke(InterceptorContext context)
         {
-            //TODO: 记录日志
-            base.AfterInvoke(context);
+            Console.WriteLine(string.Format("After Invoke in {0}", context.MethodInfo.Name));
         }
     }
 }

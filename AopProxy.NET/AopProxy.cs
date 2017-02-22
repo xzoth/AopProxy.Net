@@ -80,7 +80,7 @@ namespace AopProxy
             //构造类型配置集合
             Dictionary<Type, Type> Cfg = new Dictionary<Type, Type>();
 
-            Config = new AopProxy.Config.AopProxyConfig();
+            Config = new AopProxyConfig();
             Config.Advisors.Add(new AdvisorConfig()
             {
                 AdviseType = "AopProxy.AOP.Advice.LogAdvice, AopProxy",
@@ -116,7 +116,7 @@ namespace AopProxy
             }
 
 
-            InterceptorContext context = new AOP.InterceptorContext()
+            InterceptorContext context = new InterceptorContext()
             {
                 TargetInstance = targetInstance,
                 Args = methodCallMessage.Args,
@@ -125,10 +125,17 @@ namespace AopProxy
 
             try
             {
-                RaiseBeforeInvokeEvent(context);
-                foreach (var advice in AroundAdviceList)
+                if (AroundAdviceList.Count > 0)
                 {
-                    advice.Invoke(context);
+                    RaiseBeforeInvokeEvent(context);
+                    foreach (var advice in AroundAdviceList)
+                    {
+                        advice.Invoke(context);
+                    }
+                }
+                else
+                {
+                    context.Invoke();
                 }
 
                 return new ReturnMessage(context.ReturnValue, methodCallMessage.Args, methodCallMessage.ArgCount - methodCallMessage.InArgCount, methodCallMessage.LogicalCallContext, methodCallMessage);
@@ -140,7 +147,10 @@ namespace AopProxy
             }
             finally
             {
-                RaiseAfterInvokeEvent(context);
+                if (AroundAdviceList.Count > 0)
+                {
+                    RaiseAfterInvokeEvent(context);
+                }
             }
         }
     }
