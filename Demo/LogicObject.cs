@@ -17,6 +17,12 @@ namespace Demo
             return result = a + b;
         }
 
+        [Log]
+        public void ShowResult()
+        {
+            Console.WriteLine(Result);
+        }
+
         public float Add(float a, float b)
         {
             return a + b;

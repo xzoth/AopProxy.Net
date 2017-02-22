@@ -15,10 +15,11 @@ namespace Demo
         {
             ILogic obj = AopProxyFactory.GetProxy<ILogic>();
             obj.Add(3, 3);
+            obj.Add(-2, 12);
             int result = obj.Result;
+            obj.ShowResult();
 
-
-            Console.WriteLine(string.Format("result is: {0}", result));
+            //Console.WriteLine(string.Format("result is: {0}", result));
             Console.ReadLine();
         }
     }

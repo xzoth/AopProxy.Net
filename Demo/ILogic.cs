@@ -9,7 +9,9 @@ namespace Demo
     public interface ILogic
     {
         int Add(int a, int b);
-        
+
+        void ShowResult();
+
         int Result
         {
             get;

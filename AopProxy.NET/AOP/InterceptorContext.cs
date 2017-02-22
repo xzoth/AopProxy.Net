@@ -6,6 +6,8 @@ namespace AopProxy.AOP
     {
         public object TargetInstance { get; internal set; }
 
+        public MethodInfo TargetMethodInfo { get; internal set; }
+
         public MethodInfo MethodInfo { get; internal set; }
 
         public object[] Args { get; internal set; }

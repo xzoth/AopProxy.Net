@@ -12,6 +12,26 @@ namespace AopProxy
 {
     public class AopProxyFactory
     {
+        static AopProxyFactory()
+        {
+            Config = new AopProxyConfig();
+            Config.Advisors.Add(new AdvisorConfig()
+            {
+                AdviseType = "AopProxy.AOP.Advice.LogAdvice, AopProxy",
+                PointCutType = "AopProxy.AOP.Attribute.LogAttribute, AopProxy"
+            });
+
+            TypeMap = new Dictionary<Type, AroundAdvice>();
+            foreach (var advConfig in AopProxyFactory.Config.Advisors)
+            {
+                Type pointCutType = AopProxyFactory.LoadType(advConfig.PointCutType);
+                Type adviceType = AopProxyFactory.LoadType(advConfig.AdviseType);
+                AroundAdvice advice = Activator.CreateInstance(adviceType) as AroundAdvice;
+
+                TypeMap[pointCutType] = advice;
+            }
+        }
+
         public static T GetProxy<T>()
         {
             return GetProxy<T>(false);
@@ -34,12 +54,6 @@ namespace AopProxy
             {
                 var targetInstance = (T)Activator.CreateInstance(types[0]);
                 AopProxy<T> proxy = new AopProxy<T>(targetInstance);
-
-                //TODO 根据Advisor织入定义，绑定事件处理Advice方法。
-                proxy.BeforeInvoke += Proxy_BeforeInvoke;
-                proxy.AfterInvoke += Proxy_AfterInvoke;
-                proxy.ThrowException += Proxy_ThrowException;
-
                 return (T)proxy.GetTransparentProxy();
             }
             else
@@ -48,30 +62,8 @@ namespace AopProxy
             }
         }
 
-        private static void Proxy_ThrowException(InterceptorContext context, Exception e)
-        {
-            
-        }
-
-        private static void Proxy_BeforeInvoke(InterceptorContext context)
-        {
-            
-        }
-
-        private static void Proxy_AfterInvoke(InterceptorContext context)
-        {
-            //TODO: 缓存目标实例和相关元数据以加强性能
-
-            //IMethodCallMessage methodCallMessage = message as IMethodCallMessage;
-            ////TODO: 移除LAMBDA表达式以降低对framework版本的要求
-            //Type[] argsType = methodCallMessage.MethodBase.GetParameters().Select(t => t.ParameterType).ToArray();
-
-            //Type targetType = targetInstance.GetType();
-            //var methodInfo = targetType.GetMethod(methodCallMessage.MethodBase.Name, argsType);
-            //var attributes = methodInfo.GetCustomAttributes(typeof(JoinPointAttribute), true);
-        }
-
-        public AopProxyConfig Config { get; set; }
+        public static AopProxyConfig Config { get; set; }
+        internal static Dictionary<Type, AroundAdvice> TypeMap { get; set; }
 
         //public static void AddAdvisor(string strAdviceType, string strPointCutType)
         //{
