@@ -1,4 +1,4 @@
-﻿using AopProxy.Attribute;
+﻿using AopProxy.AOP.Attribute;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +10,10 @@ namespace Demo
     {
         public LogicObject() { }
 
-        [JoinPoint]
+        [Log]
         public int Add(int a, int b)
         {
-            throw new ArgumentException("参数TM不正确");
+            //throw new ArgumentException("参数TM不正确");
             return result = a + b;
         }
 

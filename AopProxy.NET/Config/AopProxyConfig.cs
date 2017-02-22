@@ -9,9 +9,9 @@ namespace AopProxy.Config
     {
         public AopProxyConfig()
         {
-            PointCut = new List<PointCutConfig>();
+            Advisors = new List<AdvisorConfig>();
         }
 
-        public List<PointCutConfig> PointCut { get; set; }
+        public List<AdvisorConfig> Advisors { get; set; }
     }
 }

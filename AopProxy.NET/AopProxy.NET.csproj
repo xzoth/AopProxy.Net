@@ -33,29 +33,37 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AOP\Advice\AroundAdvice.cs" />
+    <Compile Include="AOP\Advice\ExceptionAdvice.cs" />
+    <Compile Include="AOP\Advice\IMethodInterceptorAdvice.cs" />
+    <Compile Include="AOP\Advice\LogAdvice.cs" />
+    <Compile Include="AOP\Attribute\MethodInterceptorAdvice.cs" />
+    <Compile Include="AOP\Attribute\TransactionAdvice.cs" />
     <Compile Include="AopProxy.cs" />
     <Compile Include="AopProxyFactory.cs" />
-    <Compile Include="AOP\IAdvice.cs" />
-    <Compile Include="AOP\IAroundAdvice.cs" />
-    <Compile Include="AOP\IThrowsAdvice.cs" />
-    <Compile Include="AOP\IPointCut.cs" />
-    <Compile Include="Attribute\AroundAttribute.cs" />
-    <Compile Include="Attribute\JoinPointAttribute.cs" />
-    <Compile Include="Attribute\ThrowsAttribute.cs" />
-    <Compile Include="Config\AdviceConfig.cs" />
+    <Compile Include="AOP\Advice\IAdvice.cs" />
+    <Compile Include="AOP\Advice\IAroundAdvice.cs" />
+    <Compile Include="AOP\Attribute\LogAttribute.cs" />
+    <Compile Include="AOP\Attribute\TransactionAttribute.cs" />
+    <Compile Include="AOP\InterceptorContext.cs" />
+    <Compile Include="AOP\Advice\IThrowsAdvice.cs" />
+    <Compile Include="AOP\Weaver.cs" />
+    <Compile Include="AOP\Attribute\AroundAttribute.cs" />
+    <Compile Include="AOP\Attribute\JoinPointAttribute.cs" />
+    <Compile Include="AOP\Attribute\ThrowsAttribute.cs" />
+    <Compile Include="Config\AdvisorConfig.cs" />
     <Compile Include="Config\AopProxyConfig.cs" />
-    <Compile Include="Config\PointCutConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Config\AopProxy.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

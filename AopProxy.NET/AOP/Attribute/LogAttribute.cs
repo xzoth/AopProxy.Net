@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AopProxy.Config
+namespace AopProxy.AOP.Attribute
 {
-    public class AdviceConfig
+    public class LogAttribute: AroundAttribute
     {
-        public string Advice { get; set; }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using AopProxy.AOP;
+using AopProxy.AOP.Advice;
+using AopProxy.AOP.Attribute;
 using AopProxy.Config;
 using System;
 using System.Collections.Generic;
@@ -30,10 +32,14 @@ namespace AopProxy
 
             if (types != null && types.Length > 0)
             {
-                var instance = (T)Activator.CreateInstance(types[0]);
-                AopProxy<T> proxy = new AopProxy<T>(instance);
+                var targetInstance = (T)Activator.CreateInstance(types[0]);
+                AopProxy<T> proxy = new AopProxy<T>(targetInstance);
 
+                //TODO 根据Advisor织入定义，绑定事件处理Advice方法。
+                proxy.BeforeInvoke += Proxy_BeforeInvoke;
                 proxy.AfterInvoke += Proxy_AfterInvoke;
+                proxy.ThrowException += Proxy_ThrowException;
+
                 return (T)proxy.GetTransparentProxy();
             }
             else
@@ -42,7 +48,17 @@ namespace AopProxy
             }
         }
 
-        private static void Proxy_AfterInvoke(MethodInfo methodInfo, object returnValue, object targetInstance)
+        private static void Proxy_ThrowException(InterceptorContext context, Exception e)
+        {
+            
+        }
+
+        private static void Proxy_BeforeInvoke(InterceptorContext context)
+        {
+            
+        }
+
+        private static void Proxy_AfterInvoke(InterceptorContext context)
         {
             //TODO: 缓存目标实例和相关元数据以加强性能
 
@@ -57,10 +73,15 @@ namespace AopProxy
 
         public AopProxyConfig Config { get; set; }
 
-        public static void AddAdvice(IAdvice advice, IPointCut pointCut)
+        //public static void AddAdvisor(string strAdviceType, string strPointCutType)
+        //{
+        //    Type adviceType = LoadType(strAdviceType);
+        //    Type pointcutType = LoadType(strPointCutType);
+        //}
+
+        public static Type LoadType(string typeString)
         {
-
+            return Type.GetType(typeString, true, true);
         }
-
     }
 }

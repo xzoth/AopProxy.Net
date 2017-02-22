@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AopProxy.Attribute
+namespace AopProxy.AOP.Attribute
 {
-    public class AroundAttribute : JoinPointAttribute
+    public class TransactionAttribute: AroundAttribute
     {
     }
 }
