@@ -12,7 +12,9 @@ namespace AopProxy
 {
     public class AopProxyFactory
     {
-        static AopProxyFactory()
+        private static AopProxyFactory instance = new AopProxyFactory();
+        
+        private AopProxyFactory()
         {
             Config = new AopProxyConfig();
             Config.Advisors.Add(new AdvisorConfig()
@@ -29,6 +31,18 @@ namespace AopProxy
                 AroundAdvice advice = Activator.CreateInstance(adviceType) as AroundAdvice;
 
                 TypeMap[pointCutType] = advice;
+            }
+        }
+
+        public static AopProxyFactory Instance
+        {
+            get
+            {
+                return instance;
+            }
+            protected set
+            {
+                instance = value;
             }
         }
 
@@ -63,7 +77,7 @@ namespace AopProxy
         }
 
         public static AopProxyConfig Config { get; set; }
-        internal static Dictionary<Type, AroundAdvice> TypeMap { get; set; }
+        internal Dictionary<Type, AroundAdvice> TypeMap { get; set; }
 
         //public static void AddAdvisor(string strAdviceType, string strPointCutType)
         //{

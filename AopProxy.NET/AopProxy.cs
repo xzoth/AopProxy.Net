@@ -9,6 +9,8 @@ using System.Reflection;
 using System.Runtime.Remoting.Messaging;
 using System.Runtime.Remoting.Proxies;
 using System.Text;
+using System.Data;
+using System.Collections;
 
 namespace AopProxy
 {
@@ -71,18 +73,7 @@ namespace AopProxy
             var targetMethodInfo = targetType.GetMethod(messageMethodInfo.Name, argsType);
             var methodAttributes = targetMethodInfo.GetCustomAttributes(typeof(JoinPointAttribute), true);
 
-            List<AroundAdvice> AroundAdviceList = new List<AroundAdvice>();
-            foreach (JoinPointAttribute attr in methodAttributes)
-            {
-                Type joinPointType = attr.GetType();
-                AroundAdviceList = AopProxyFactory.TypeMap.Where(item => item.Key.IsAssignableFrom(joinPointType)).Select(item => item.Value).ToList();
 
-                foreach (var advice in AroundAdviceList)
-                {
-                    BeforeInvoke += advice.BeforeInvoke;
-                    AfterInvoke += advice.AfterInvoke;
-                }
-            }
 
             InterceptorContext context = new InterceptorContext()
             {
@@ -91,24 +82,22 @@ namespace AopProxy
                 MethodInfo = messageMethodInfo,
                 TargetMethodInfo = targetMethodInfo
             };
+            
+            foreach (JoinPointAttribute attr in methodAttributes)
+            {
+                Type joinPointType = attr.GetType();
+                var adv = AopProxyFactory.Instance.TypeMap.FirstOrDefault(item => item.Key.IsAssignableFrom(joinPointType)).Value;
+
+                context.MethodChain.Enqueue(new AroundAdviceHandler(adv.Invoke));
+            }
 
             try
             {
-                if (AroundAdviceList.Count > 0)
-                {
-                    RaiseBeforeInvokeEvent(context);
-                    foreach (var advice in AroundAdviceList)
-                    {
-                        BeforeInvoke -= advice.BeforeInvoke;
-                        advice.Invoke(context);
-                    }
-                }
-                else
-                {
-                    context.Invoke();
-                }
+                object returnValue = default(object);
+                RaiseBeforeInvokeEvent(context);
 
-                return new ReturnMessage(context.ReturnValue, methodCallMessage.Args, methodCallMessage.ArgCount - methodCallMessage.InArgCount, methodCallMessage.LogicalCallContext, methodCallMessage);
+                returnValue = context.Invoke();
+                return new ReturnMessage(returnValue, methodCallMessage.Args, methodCallMessage.ArgCount - methodCallMessage.InArgCount, methodCallMessage.LogicalCallContext, methodCallMessage);
             }
             catch (Exception e)
             {
@@ -117,14 +106,7 @@ namespace AopProxy
             }
             finally
             {
-                if (AroundAdviceList.Count > 0)
-                {
-                    RaiseAfterInvokeEvent(context);
-                    foreach (var advice in AroundAdviceList)
-                    {
-                        AfterInvoke -= advice.AfterInvoke;
-                    }
-                }
+                RaiseAfterInvokeEvent(context);
             }
         }
     }

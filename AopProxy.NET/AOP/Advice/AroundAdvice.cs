@@ -5,14 +5,8 @@ using System.Text;
 
 namespace AopProxy.AOP.Advice
 {
-    public abstract class AroundAdvice : MethodInterceptorAdvice, IAroundAdvice 
+    public abstract class AroundAdvice : IAroundAdvice 
     {
-        public virtual void AfterInvoke(InterceptorContext context)
-        {
-        }
-
-        public virtual void BeforeInvoke(InterceptorContext context)
-        {
-        }
+        public abstract object Invoke(InterceptorContext context);
     }
 }

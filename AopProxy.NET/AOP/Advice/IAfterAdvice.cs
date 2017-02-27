@@ -5,8 +5,8 @@ using System.Text;
 
 namespace AopProxy.AOP.Advice
 {
-    public interface IMethodInterceptorAdvice : IAdvice
+    public interface IAfterAdvice: IAdvice
     {
-        object Invoke(InterceptorContext context);
+        void AfterInvoke(InterceptorContext context);
     }
 }

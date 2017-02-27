@@ -1,4 +1,9 @@
 ﻿using System.Reflection;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace AopProxy.AOP
 {
@@ -12,24 +17,34 @@ namespace AopProxy.AOP
 
         public object[] Args { get; internal set; }
 
-        public object ReturnValue { get;  internal set; }
-
-        public bool IsInvoked { get; internal set; }
-
         private static object locker = new object();
 
         public object Invoke()
         {
-            lock (locker)
+            NextHandler = GetNextHandler();
+            if (NextHandler != null)
             {
-                if (!IsInvoked && ReturnValue == null)
-                {
-                    ReturnValue = MethodInfo.Invoke(TargetInstance, Args);
-                    IsInvoked = true;
-                }
+                return NextHandler(this);
             }
+            else
+            {
+                return MethodInfo.Invoke(TargetInstance, Args);
+            }
+        }
+        
+        internal Queue<AroundAdviceHandler> MethodChain = new Queue<AroundAdviceHandler>();
 
-            return ReturnValue;
+        internal AroundAdviceHandler NextHandler;
+
+        internal AroundAdviceHandler GetNextHandler()
+        {
+            if (MethodChain.Count > 0)
+            {
+                return MethodChain.Dequeue();
+            }
+            return null;
         }
     }
+
+    public delegate object AroundAdviceHandler(InterceptorContext context);
 }

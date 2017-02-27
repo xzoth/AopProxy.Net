@@ -40,9 +40,9 @@
   <ItemGroup>
     <Compile Include="AOP\Advice\AroundAdvice.cs" />
     <Compile Include="AOP\Advice\ExceptionAdvice.cs" />
-    <Compile Include="AOP\Advice\IMethodInterceptorAdvice.cs" />
+    <Compile Include="AOP\Advice\IAfterAdvice.cs" />
+    <Compile Include="AOP\Advice\IBeforeAdvice.cs" />
     <Compile Include="AOP\Advice\LogAdvice.cs" />
-    <Compile Include="AOP\Attribute\MethodInterceptorAdvice.cs" />
     <Compile Include="AOP\Attribute\TransactionAdvice.cs" />
     <Compile Include="AopProxy.cs" />
     <Compile Include="AopProxyFactory.cs" />

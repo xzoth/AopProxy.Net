@@ -7,28 +7,27 @@ namespace AopProxy.AOP.Advice
 {
     public class LogAdvice : AroundAdvice
     {
-        public override void BeforeInvoke(InterceptorContext context)
+        public override object Invoke(InterceptorContext context)
         {
-            Console.WriteLine(string.Format("Before Invoke in {0}::{1}", context.MethodInfo.DeclaringType.FullName, context.MethodInfo));
+            Console.WriteLine(string.Format("Before Invoke in {0}::{1}", context.TargetMethodInfo.DeclaringType.FullName, context.TargetMethodInfo));
 
             string strArgs = string.Empty;
             foreach(var arg in context.Args)
             {
                 strArgs += arg + " ";
             }
-            Console.WriteLine(string.Format("Parameters {0}", strArgs));
-        }
+            Console.WriteLine(string.Format("Parameters: {0}", strArgs));
 
-        public override object Invoke(InterceptorContext context)
-        {
+            
+
             object returnValue = context.Invoke();
-            Console.WriteLine(string.Format("Go in Method, return {0}", context.ReturnValue));
-            return returnValue;
-        }
+            Console.WriteLine(string.Format("processed, return value: {0}", returnValue));
 
-        public override void AfterInvoke(InterceptorContext context)
-        {
-            Console.WriteLine(string.Format("After Invoke in {0}::{1}", context.MethodInfo.DeclaringType.FullName, context.MethodInfo));
+
+
+            Console.WriteLine(string.Format("After Invoke in {0}::{1}", context.TargetMethodInfo.DeclaringType.FullName, context.TargetMethodInfo));
+            
+            return returnValue;
         }
     }
 }
