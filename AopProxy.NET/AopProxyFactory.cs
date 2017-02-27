@@ -23,12 +23,12 @@ namespace AopProxy
                 PointCutType = "AopProxy.AOP.Attribute.LogAttribute, AopProxy"
             });
 
-            TypeMap = new Dictionary<Type, AroundAdvice>();
+            TypeMap = new Dictionary<Type, IAroundAdvice>();
             foreach (var advConfig in AopProxyFactory.Config.Advisors)
             {
                 Type pointCutType = AopProxyFactory.LoadType(advConfig.PointCutType);
                 Type adviceType = AopProxyFactory.LoadType(advConfig.AdviseType);
-                AroundAdvice advice = Activator.CreateInstance(adviceType) as AroundAdvice;
+                IAroundAdvice advice = Activator.CreateInstance(adviceType) as IAroundAdvice;
 
                 TypeMap[pointCutType] = advice;
             }
@@ -77,7 +77,7 @@ namespace AopProxy
         }
 
         public static AopProxyConfig Config { get; set; }
-        internal Dictionary<Type, AroundAdvice> TypeMap { get; set; }
+        internal Dictionary<Type, IAroundAdvice> TypeMap { get; set; }
 
         //public static void AddAdvisor(string strAdviceType, string strPointCutType)
         //{

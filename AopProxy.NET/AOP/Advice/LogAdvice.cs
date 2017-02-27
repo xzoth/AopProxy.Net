@@ -5,9 +5,9 @@ using System.Text;
 
 namespace AopProxy.AOP.Advice
 {
-    public class LogAdvice : AroundAdvice
+    public class LogAdvice : IAroundAdvice
     {
-        public override object Invoke(InterceptorContext context)
+        public object Invoke(InterceptorContext context)
         {
             Console.WriteLine(string.Format("Before Invoke in {0}::{1}", context.TargetMethodInfo.DeclaringType.FullName, context.TargetMethodInfo));
 

@@ -5,9 +5,9 @@ using System.Text;
 
 namespace AopProxy.AOP.Advice
 {
-    public class TransactionAdvice : AroundAdvice
+    public class TransactionAdvice : IAroundAdvice
     {
-        public override object Invoke(InterceptorContext context)
+        public object Invoke(InterceptorContext context)
         {
             //TODO:开启数据库事务
 
