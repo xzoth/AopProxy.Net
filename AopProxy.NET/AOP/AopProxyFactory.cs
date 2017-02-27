@@ -17,9 +17,13 @@ namespace AopProxy.AOP
         private AopProxyFactory()
         {
             Config = AopProxyConfig.Load();
+            if(Config == null)
+            {
+                Config = new AopProxyConfig();
+            }
 
             TypeMap = new Dictionary<Type, IAroundAdvice>();
-            foreach (var advConfig in AopProxyFactory.Config.Advisors)
+            foreach (var advConfig in Config.Advisors)
             {
                 Type pointCutType = AopProxyFactory.LoadType(advConfig.PointCutType);
                 Type adviceType = AopProxyFactory.LoadType(advConfig.AdviseType);
@@ -42,11 +46,6 @@ namespace AopProxy.AOP
         }
 
         public static T GetProxy<T>()
-        {
-            return GetProxy<T>(false);
-        }
-
-        public static T GetProxy<T>(bool isSingle)
         {
             Type interfaceType = typeof(T);
             if (!interfaceType.IsInterface)
@@ -71,14 +70,8 @@ namespace AopProxy.AOP
             }
         }
 
-        public static AopProxyConfig Config { get; set; }
+        public AopProxyConfig Config { get; set; }
         internal Dictionary<Type, IAroundAdvice> TypeMap { get; set; }
-
-        //public static void AddAdvisor(string strAdviceType, string strPointCutType)
-        //{
-        //    Type adviceType = LoadType(strAdviceType);
-        //    Type pointcutType = LoadType(strPointCutType);
-        //}
 
         public static Type LoadType(string typeString)
         {
