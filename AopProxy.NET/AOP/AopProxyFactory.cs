@@ -16,12 +16,7 @@ namespace AopProxy.AOP
         
         private AopProxyFactory()
         {
-            Config = new AopProxyConfig();
-            Config.Advisors.Add(new AdvisorConfig()
-            {
-                AdviseType = "AopProxy.AOP.Advice.LogAdvice, AopProxy",
-                PointCutType = "AopProxy.AOP.Attribute.LogAttribute, AopProxy"
-            });
+            Config = AopProxyConfig.Load();
 
             TypeMap = new Dictionary<Type, IAroundAdvice>();
             foreach (var advConfig in AopProxyFactory.Config.Advisors)
