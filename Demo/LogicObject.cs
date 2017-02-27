@@ -1,4 +1,5 @@
 ﻿using AopProxy.AOP.Attribute;
+using Demo.MyAttribute;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,15 @@ namespace Demo
     {
         public LogicObject() { }
 
-        [Log][Log]
+        [Throws("BussinessExceptionCode")]
+        [Log]//[Log]
         public int Add(int a, int b)
         {
-            throw new ArgumentException("参数TM不正确");
+            //throw new ArgumentException("参数TM不正确");
             return result = a + b;
         }
 
-        [Log]        
+        [Before]
         public void ShowResult()
         {
             Console.WriteLine(Result);

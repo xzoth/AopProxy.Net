@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AopProxy.AOP;
+using AopProxy.AOP.Attribute;
 
 namespace Demo.Advice
 {
@@ -11,7 +12,20 @@ namespace Demo.Advice
     {
         public virtual void OnException(InterceptorContext context, Exception e)
         {
-            string strErrMsg = string.Format("Error in: {0}::{1} \r\n Args: {2}  \r\n Error Message: {3}", context.TargetMethodInfo.DeclaringType, context.TargetMethodInfo, e.InnerException.Message);
+            ThrowsAttribute throwAttr = (context.TargetMethodInfo.GetCustomAttributes(typeof(ThrowsAttribute), false) as ThrowsAttribute[])[0];
+
+            string strArgs = string.Empty;
+            foreach (var arg in context.Args)
+            {
+                strArgs += arg + " ";
+            }
+            string strErrMsg = string.Format("Error in: {0}::{1} \r\nArgs: {2}  \r\nError Message: {3}\r\nCode: {4}", 
+                context.TargetMethodInfo.DeclaringType, 
+                context.TargetMethodInfo, 
+                strArgs, 
+                e.InnerException.Message,
+                throwAttr.Code);
+
             Console.WriteLine(strErrMsg);
         }
     }

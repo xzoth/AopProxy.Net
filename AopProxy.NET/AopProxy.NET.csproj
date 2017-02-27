@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AopExceptionBase.cs" />
     <Compile Include="AOP\Advice\IAfterAdvice.cs" />
     <Compile Include="AOP\Advice\IBeforeAdvice.cs" />
     <Compile Include="AOP\AopProxy.cs" />

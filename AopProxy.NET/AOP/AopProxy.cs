@@ -85,16 +85,37 @@ namespace AopProxy.AOP
             foreach (JoinPointAttribute attr in methodAttributes)
             {
                 Type joinPointType = attr.GetType();
-                var adv = AopProxyFactory.Instance.TypeMap.FirstOrDefault(item => item.Key.IsAssignableFrom(joinPointType)).Value;
-
-                context.MethodChain.Enqueue(new AroundAdviceHandler(adv.Invoke));
+                IAdvice adviceObj = AopProxyFactory.Instance.TypeMap.FirstOrDefault(item => item.Key.IsAssignableFrom(joinPointType)).Value;
+                if (adviceObj != null)
+                {
+                    if (adviceObj is IBeforeAdvice)
+                    {
+                        var beforeAdv = adviceObj as IBeforeAdvice;
+                        BeforeInvoke += beforeAdv.BeforeInvoke;
+                    }
+                    if (adviceObj is IAfterAdvice)
+                    {
+                        var afterAdv = adviceObj as IAfterAdvice;
+                        AfterInvoke += afterAdv.AfterInvoke;
+                    }
+                    if (attr is ThrowsAttribute)
+                    {
+                        var throwAdv = adviceObj as IThrowsAdvice;
+                        ThrowException += throwAdv.OnException;
+                    }
+                    if (attr is AroundAttribute)
+                    {
+                        var aroundAdv = adviceObj as IAroundAdvice;
+                        context.MethodChain.Enqueue(new AroundAdviceHandler(aroundAdv.Invoke));
+                    }
+                }
             }
 
             try
             {
                 object returnValue = default(object);
                 RaiseBeforeInvokeEvent(context);
-
+                BeforeInvoke = null;//TODO 通过移除委托的方式解除事件监听
                 returnValue = context.Invoke();
                 return new ReturnMessage(returnValue, methodCallMessage.Args, methodCallMessage.ArgCount - methodCallMessage.InArgCount, methodCallMessage.LogicalCallContext, methodCallMessage);
             }
@@ -106,6 +127,7 @@ namespace AopProxy.AOP
             finally
             {
                 RaiseAfterInvokeEvent(context);
+                AfterInvoke = null;//TODO 通过移除委托的方式解除事件监听
             }
         }
     }

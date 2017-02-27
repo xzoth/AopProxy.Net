@@ -5,7 +5,9 @@ using System.Text;
 
 namespace AopProxy.AOP.Attribute
 {
-    public class LogAttribute: AroundAttribute
+    [Serializable]
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property, AllowMultiple = true, Inherited = true)]
+    public class LogAttribute : AroundAttribute
     {
     }
 }

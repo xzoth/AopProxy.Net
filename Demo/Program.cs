@@ -19,6 +19,7 @@ namespace Demo
             obj.Add(-2, 12);
             int result = obj.Result;
             obj.ShowResult();
+            obj.ShowResult();
 
             //Console.WriteLine(string.Format("result is: {0}", result));
             Console.ReadLine();
