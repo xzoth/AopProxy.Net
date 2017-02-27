@@ -40,6 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Advice\AuthAdvice.cs" />
+    <Compile Include="Advice\ExceptionAdvice.cs" />
+    <Compile Include="Advice\LogAdvice.cs" />
+    <Compile Include="Advice\TransactionAdvice.cs" />
     <Compile Include="ILogic.cs" />
     <Compile Include="LogicObject.cs" />
     <Compile Include="Program.cs" />
@@ -50,6 +54,9 @@
       <Project>{83cfa4d8-45dc-4af2-af8c-74ef37b05b08}</Project>
       <Name>AopProxy.NET</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

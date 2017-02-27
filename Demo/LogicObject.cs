@@ -13,7 +13,7 @@ namespace Demo
         [Log][Log]
         public int Add(int a, int b)
         {
-            //throw new ArgumentException("参数TM不正确");
+            throw new ArgumentException("参数TM不正确");
             return result = a + b;
         }
 

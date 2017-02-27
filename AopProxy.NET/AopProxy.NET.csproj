@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
@@ -38,15 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AOP\Advice\ExceptionAdvice.cs" />
     <Compile Include="AOP\Advice\IAfterAdvice.cs" />
     <Compile Include="AOP\Advice\IBeforeAdvice.cs" />
-    <Compile Include="AOP\Advice\LogAdvice.cs" />
-    <Compile Include="AOP\Attribute\TransactionAdvice.cs" />
     <Compile Include="AopProxy.cs" />
     <Compile Include="AopProxyFactory.cs" />
     <Compile Include="AOP\Advice\IAdvice.cs" />
     <Compile Include="AOP\Advice\IAroundAdvice.cs" />
+    <Compile Include="AOP\Attribute\AuthAttribute.cs" />
     <Compile Include="AOP\Attribute\LogAttribute.cs" />
     <Compile Include="AOP\Attribute\TransactionAttribute.cs" />
     <Compile Include="AOP\InterceptorContext.cs" />
@@ -57,12 +56,16 @@
     <Compile Include="AOP\Attribute\ThrowsAttribute.cs" />
     <Compile Include="Config\AdvisorConfig.cs" />
     <Compile Include="Config\AopProxyConfig.cs" />
+    <Compile Include="Config\AopProxyConfigSectionHandler.cs" />
+    <Compile Include="Config\ConfigBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Config\AopProxy.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
