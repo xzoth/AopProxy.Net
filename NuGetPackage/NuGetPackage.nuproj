@@ -34,9 +34,6 @@
     <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="Readme.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\AopProxy.NET\AopProxy.NET.csproj" />
   </ItemGroup>
   <Import Project="$(NuProjPath)\NuProj.targets" />
