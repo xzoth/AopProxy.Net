@@ -59,6 +59,7 @@
     <Compile Include="AOP\Config\AopProxyConfig.cs" />
     <Compile Include="AOP\Config\AopProxyConfigSectionHandler.cs" />
     <Compile Include="AOP\Config\ConfigBase.cs" />
+    <Compile Include="LogLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

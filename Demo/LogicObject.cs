@@ -1,4 +1,5 @@
-﻿using AopProxy.AOP.Attribute;
+﻿using AopProxy;
+using AopProxy.AOP.Attribute;
 using Demo.MyAttribute;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace Demo
         public LogicObject() { }
 
         [Throws("BussinessExceptionCode")]
-        [Log]//[Log]
+        [Log(LogLevel.Warn)]//[Log]
         public int Add(int a, int b)
         {
             //throw new ArgumentException("参数TM不正确");

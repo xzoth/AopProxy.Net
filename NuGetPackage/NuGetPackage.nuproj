@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|AnyCPU">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|AnyCPU">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>90823227-97da-48b0-bf99-003a80db06c8</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NuProjPath Condition=" '$(NuProjPath)' == '' ">$(MSBuildExtensionsPath)\NuProj\</NuProjPath>
+  </PropertyGroup>
+  <Import Project="$(NuProjPath)\NuProj.props" Condition="Exists('$(NuProjPath)\NuProj.props')" />
+  <PropertyGroup Label="Configuration">
+    <Id>AopProxy.Net</Id>
+    <Version>0.1.0</Version>
+    <Title>AopProxy.Net</Title>
+    <Authors>Zev.mcqueen</Authors>
+    <Owners>Zev.mcqueen</Owners>
+    <Summary>AopProxy.Net</Summary>
+    <Description>AopProxy.Net</Description>
+    <ReleaseNotes>
+    </ReleaseNotes>
+    <ProjectUrl>https://github.com/xzoth/AopProxy.Net</ProjectUrl>
+    <LicenseUrl>https://github.com/xzoth/AopProxy.Net/blob/master/ReadMe.MD</LicenseUrl>
+    <Copyright>Copyright © Zev.mcqueen</Copyright>
+    <Tags>AopProxy.Net</Tags>
+    <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AopProxy.NET\AopProxy.NET.csproj" />
+  </ItemGroup>
+  <Import Project="$(NuProjPath)\NuProj.targets" />
+</Project>
