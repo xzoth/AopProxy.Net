@@ -1,14 +1,14 @@
 ﻿using AopProxy.AOP;
 using AopProxy.AOP.Advice;
 using AopProxy.AOP.Attribute;
-using AopProxy.Config;
+using AopProxy.AOP.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace AopProxy
+namespace AopProxy.AOP
 {
     public class AopProxyFactory
     {

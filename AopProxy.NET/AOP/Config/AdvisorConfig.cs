@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace AopProxy.Config
+namespace AopProxy.AOP.Config
 {
     [Serializable]
     [XmlType("Advisor")]

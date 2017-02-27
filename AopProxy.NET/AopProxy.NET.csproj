@@ -41,8 +41,8 @@
   <ItemGroup>
     <Compile Include="AOP\Advice\IAfterAdvice.cs" />
     <Compile Include="AOP\Advice\IBeforeAdvice.cs" />
-    <Compile Include="AopProxy.cs" />
-    <Compile Include="AopProxyFactory.cs" />
+    <Compile Include="AOP\AopProxy.cs" />
+    <Compile Include="AOP\AopProxyFactory.cs" />
     <Compile Include="AOP\Advice\IAdvice.cs" />
     <Compile Include="AOP\Advice\IAroundAdvice.cs" />
     <Compile Include="AOP\Attribute\AuthAttribute.cs" />
@@ -54,17 +54,11 @@
     <Compile Include="AOP\Attribute\AroundAttribute.cs" />
     <Compile Include="AOP\Attribute\JoinPointAttribute.cs" />
     <Compile Include="AOP\Attribute\ThrowsAttribute.cs" />
-    <Compile Include="Config\AdvisorConfig.cs" />
-    <Compile Include="Config\AopProxyConfig.cs" />
-    <Compile Include="Config\AopProxyConfigSectionHandler.cs" />
-    <Compile Include="Config\ConfigBase.cs" />
+    <Compile Include="AOP\Config\AdvisorConfig.cs" />
+    <Compile Include="AOP\Config\AopProxyConfig.cs" />
+    <Compile Include="AOP\Config\AopProxyConfigSectionHandler.cs" />
+    <Compile Include="AOP\Config\ConfigBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Config\AopProxy.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

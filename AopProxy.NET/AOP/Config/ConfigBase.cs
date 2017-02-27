@@ -6,7 +6,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace AopProxy.Config
+namespace AopProxy.AOP.Config
 {
     [Serializable]
     public abstract class ConfigBase<T> where T : ConfigBase<T>

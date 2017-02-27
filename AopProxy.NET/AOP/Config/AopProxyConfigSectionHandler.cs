@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
-namespace AopProxy.Config
+namespace AopProxy.AOP.Config
 {
     public class AopProxyConfigSectionHandler : IConfigurationSectionHandler
     {

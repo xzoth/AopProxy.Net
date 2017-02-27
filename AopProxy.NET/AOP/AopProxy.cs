@@ -1,7 +1,6 @@
 ﻿using AopProxy.AOP;
 using AopProxy.AOP.Advice;
 using AopProxy.AOP.Attribute;
-using AopProxy.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +11,7 @@ using System.Text;
 using System.Data;
 using System.Collections;
 
-namespace AopProxy
+namespace AopProxy.AOP
 {
     public delegate void BeforeInvokeEventHandler(InterceptorContext context);
     public delegate void AfterInvokeEventHandler(InterceptorContext context);
