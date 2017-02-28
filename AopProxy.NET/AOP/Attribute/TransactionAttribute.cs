@@ -8,7 +8,7 @@ using System.Transactions;
 namespace AopProxy.AOP.Attribute
 {
     [Serializable]
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public class TransactionAttribute : AroundAttribute
     {
         public static int DefaultTimeOut = 30;
