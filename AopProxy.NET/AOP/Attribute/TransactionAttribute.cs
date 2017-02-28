@@ -11,9 +11,9 @@ namespace AopProxy.AOP.Attribute
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public class TransactionAttribute : AroundAttribute
     {
-        public static int DefaultTimeOut = 30;
+        public static int DefaultTimeOut = 10;
 
-        public TransactionAttribute(TransactionScopeOption scopeOption = TransactionScopeOption.Required, IsolationLevel isolationLevel = IsolationLevel.Chaos, EnterpriseServicesInteropOption entOption = EnterpriseServicesInteropOption.None) : this(scopeOption, isolationLevel, entOption, DefaultTimeOut)
+        public TransactionAttribute(TransactionScopeOption scopeOption = TransactionScopeOption.Required, IsolationLevel isolationLevel = IsolationLevel.Serializable, EnterpriseServicesInteropOption entOption = EnterpriseServicesInteropOption.None) : this(scopeOption, isolationLevel, entOption, DefaultTimeOut)
         {
 
         }
