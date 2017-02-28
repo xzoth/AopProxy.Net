@@ -128,6 +128,7 @@ namespace AopProxy.AOP
             {
                 RaiseAfterInvokeEvent(context);
                 AfterInvoke = null;//TODO 通过移除委托的方式解除事件监听
+                ThrowException = null;//TODO 通过移除委托的方式解除事件监听
             }
         }
     }
