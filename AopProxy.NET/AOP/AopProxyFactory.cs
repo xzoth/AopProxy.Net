@@ -13,11 +13,11 @@ namespace AopProxy.AOP
     public class AopProxyFactory
     {
         private static AopProxyFactory instance = new AopProxyFactory();
-        
+
         private AopProxyFactory()
         {
             Config = AopProxyConfig.Load();
-            if(Config == null)
+            if (Config == null)
             {
                 Config = new AopProxyConfig();
             }
@@ -45,6 +45,27 @@ namespace AopProxy.AOP
             }
         }
 
+        public static T GetProxy<T, K>() where K : class
+        {
+            Type interfaceType = typeof(T);
+            Type targetType = typeof(K);
+            if (!interfaceType.IsInterface)
+            {
+                throw new Exception("Interface Only");
+            }
+
+            if (interfaceType.IsAssignableFrom(targetType))
+            {
+                var targetInstance = (T)Activator.CreateInstance(targetType);
+                T proxy = GetTransparentProxyByInstance<T>(targetInstance);
+                return proxy;
+            }
+            else
+            {
+                return default(T);
+            }
+        }
+
         public static T GetProxy<T>()
         {
             Type interfaceType = typeof(T);
@@ -61,13 +82,19 @@ namespace AopProxy.AOP
             if (types != null && types.Length > 0)
             {
                 var targetInstance = (T)Activator.CreateInstance(types[0]);
-                AopProxy<T> proxy = new AopProxy<T>(targetInstance);
-                return (T)proxy.GetTransparentProxy();
+                T proxy = GetTransparentProxyByInstance<T>(targetInstance);
+                return proxy;
             }
             else
             {
                 return default(T);
             }
+        }
+
+        public static T GetTransparentProxyByInstance<T>(T targetInstance)
+        {
+            AopProxy<T> proxy = new AopProxy<T>(targetInstance);
+            return (T)proxy.GetTransparentProxy();
         }
 
         public AopProxyConfig Config { get; set; }

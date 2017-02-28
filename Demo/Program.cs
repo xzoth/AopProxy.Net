@@ -14,7 +14,8 @@ namespace Demo
     {
         static void Main(string[] args)
         {
-            ILogic obj = AopProxyFactory.GetProxy<ILogic>();
+            //ILogic obj = AopProxyFactory.GetProxy<ILogic>();
+            ILogic obj = AopProxyFactory.GetProxy<ILogic, LogicObject>();
             obj.Add(3, 3);
             obj.Add(-2, 12);
             int result = obj.Result;
