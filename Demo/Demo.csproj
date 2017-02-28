@@ -44,10 +44,12 @@
     <Compile Include="Advice\BeforeAdvice.cs" />
     <Compile Include="Advice\ExceptionAdvice.cs" />
     <Compile Include="Advice\LogAdvice.cs" />
+    <Compile Include="Advice\PerformanceAdvice.cs" />
     <Compile Include="Advice\TransactionAdvice.cs" />
     <Compile Include="ILogic.cs" />
     <Compile Include="LogicObject.cs" />
     <Compile Include="MyAttribute\BeforeAttribute.cs" />
+    <Compile Include="MyAttribute\PerformanceAttribute.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Transactions;
 
 namespace Demo
 {
@@ -14,7 +15,7 @@ namespace Demo
 
         [Throws("BussinessExceptionCode")]
         [Log(LogLevel.Warn)]
-        [Transaction(System.Transactions.TransactionScopeOption.Required, System.Transactions.IsolationLevel.Chaos, System.Transactions.EnterpriseServicesInteropOption.None, 10)]
+        [Transaction(TransactionScopeOption.Required, IsolationLevel.Chaos, EnterpriseServicesInteropOption.None, 10)]
         public int Add(int a, int b)
         {
             //throw new ArgumentException("参数TMD不正确");
@@ -29,6 +30,7 @@ namespace Demo
             Console.WriteLine(Result);
         }
 
+        [Performance]
         public float Add(float a, float b)
         {
             return a + b;

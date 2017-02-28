@@ -10,6 +10,8 @@ namespace Demo
     {
         int Add(int a, int b);
 
+        float Add(float a, float b);
+
         void ShowResult();
 
         int Result

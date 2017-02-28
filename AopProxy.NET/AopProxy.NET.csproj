@@ -51,7 +51,6 @@
     <Compile Include="AOP\Attribute\TransactionAttribute.cs" />
     <Compile Include="AOP\InterceptorContext.cs" />
     <Compile Include="AOP\Advice\IThrowsAdvice.cs" />
-    <Compile Include="AOP\Weaver.cs" />
     <Compile Include="AOP\Attribute\AroundAttribute.cs" />
     <Compile Include="AOP\Attribute\JoinPointAttribute.cs" />
     <Compile Include="AOP\Attribute\ThrowsAttribute.cs" />
