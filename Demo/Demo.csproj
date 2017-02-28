@@ -34,13 +34,13 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Advice\AuthAdvice.cs" />
     <Compile Include="Advice\BeforeAdvice.cs" />
     <Compile Include="Advice\ExceptionAdvice.cs" />
     <Compile Include="Advice\LogAdvice.cs" />

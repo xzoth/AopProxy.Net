@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AopProxy.AOP;
+using AopProxy.AOP.Attribute;
+using System.Transactions;
+using System.Data.Common;
 
 namespace Demo.Advice
 {
@@ -11,10 +14,17 @@ namespace Demo.Advice
     {
         public virtual object Invoke(InterceptorContext context)
         {
-            //TODO:开启数据库事务
+            TransactionAttribute transAttr = (context.TargetMethodInfo.GetCustomAttributes(typeof(TransactionAttribute), true) as TransactionAttribute[])[0];
 
-            object returnValue = context.Invoke();
-            return returnValue;
+            TransactionOptions options = new TransactionOptions();
+            options.IsolationLevel = transAttr.IsolationLevel;
+            options.Timeout = transAttr.TimeOut;
+            using (TransactionScope tran = new TransactionScope(transAttr.ScopeOption, options, transAttr.EnterpriseServicesInteropOption))
+            {
+                object returnValue = context.Invoke();
+                tran.Complete();
+                return returnValue;
+            }
         }
     }
 }

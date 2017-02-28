@@ -33,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
@@ -46,7 +47,6 @@
     <Compile Include="AOP\AopProxyFactory.cs" />
     <Compile Include="AOP\Advice\IAdvice.cs" />
     <Compile Include="AOP\Advice\IAroundAdvice.cs" />
-    <Compile Include="AOP\Attribute\AuthAttribute.cs" />
     <Compile Include="AOP\Attribute\LogAttribute.cs" />
     <Compile Include="AOP\Attribute\TransactionAttribute.cs" />
     <Compile Include="AOP\InterceptorContext.cs" />

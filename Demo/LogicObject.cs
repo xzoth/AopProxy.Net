@@ -13,14 +13,17 @@ namespace Demo
         public LogicObject() { }
 
         [Throws("BussinessExceptionCode")]
-        [Log(LogLevel.Warn)]//[Log]
+        [Log(LogLevel.Warn)]
+        [Transaction(System.Transactions.TransactionScopeOption.Required, System.Transactions.IsolationLevel.Chaos, System.Transactions.EnterpriseServicesInteropOption.None, 10)]
         public int Add(int a, int b)
         {
-            //throw new ArgumentException("参数TM不正确");
-            return result = a + b;
+            //throw new ArgumentException("参数TMD不正确");
+            result = a + b;
+            return result;
         }
 
         [Before]
+        [Transaction]
         public void ShowResult()
         {
             Console.WriteLine(Result);
