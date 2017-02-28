@@ -1,11 +1,21 @@
 #AopProxy.NET
 
+
 A simple .NET AOP component that make by dynamic proxy.
 ----
 
 ##Requirements
 
 ##Usage
+1.install nuget package
+ 
+    Install-Package AopProxy.Net
+
+2.define an advice
+
+
+3.config file
+
 
 
 ##License
