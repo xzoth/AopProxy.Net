@@ -59,9 +59,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AopProxy.NET\AopProxy.NET.csproj">
+    <ProjectReference Include="..\AopProxy.NET\AopProxy.csproj">
       <Project>{83cfa4d8-45dc-4af2-af8c-74ef37b05b08}</Project>
-      <Name>AopProxy.NET</Name>
+      <Name>AopProxy</Name>
     </ProjectReference>
     <ProjectReference Include="..\Demo\Demo.csproj">
       <Project>{53462d52-0303-4ad6-99a7-f53f4eef0ef4}</Project>

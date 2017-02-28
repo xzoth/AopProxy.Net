@@ -8,7 +8,7 @@ using AopProxy.AOP.Attribute;
 using System.Transactions;
 using System.Data.Common;
 
-namespace Demo.Advice
+namespace AopProxy.AOP.Advice
 {
     public class TransactionAdvice : IAroundAdvice
     {

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AopProxy.NET", "AopProxy.NET\AopProxy.NET.csproj", "{83CFA4D8-45DC-4AF2-AF8C-74EF37B05B08}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AopProxy", "AopProxy.NET\AopProxy.csproj", "{83CFA4D8-45DC-4AF2-AF8C-74EF37B05B08}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{53462D52-0303-4AD6-99A7-F53F4EEF0EF4}"
 EndProject

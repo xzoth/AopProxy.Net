@@ -10,6 +10,9 @@
       <Platform>AnyCPU</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AopProxy.NET\AopProxy.csproj" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>90823227-97da-48b0-bf99-003a80db06c8</ProjectGuid>
   </PropertyGroup>
@@ -24,17 +27,14 @@
     <Authors>Zev.mcqueen</Authors>
     <Owners>Zev.mcqueen</Owners>
     <Summary>AopProxy.Net</Summary>
-    <Description>AopProxy.Net</Description>
+    <Description>A simple .NET AOP component that make by dynamic proxy.</Description>
     <ReleaseNotes>
     </ReleaseNotes>
     <ProjectUrl>https://github.com/xzoth/AopProxy.Net</ProjectUrl>
     <LicenseUrl>https://github.com/xzoth/AopProxy.Net/blob/master/ReadMe.MD</LicenseUrl>
     <Copyright>Copyright © Zev.mcqueen</Copyright>
-    <Tags>AopProxy.Net</Tags>
+    <Tags>AopProxy</Tags>
     <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
   </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AopProxy.NET\AopProxy.NET.csproj" />
-  </ItemGroup>
   <Import Project="$(NuProjPath)\NuProj.targets" />
 </Project>

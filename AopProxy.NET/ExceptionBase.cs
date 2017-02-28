@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AopProxy
 {
-    public class AopExceptionBase : global::System.Exception
+    public class ExceptionBase : global::System.Exception
     {
         public virtual string Code
         {
@@ -21,22 +21,22 @@ namespace AopProxy
             }
         }
 
-        public AopExceptionBase() : base()
+        public ExceptionBase() : base()
         {
             this.Code = string.Empty;
         }
 
-        public AopExceptionBase(string message) : base(message) { }
+        public ExceptionBase(string message) : base(message) { }
 
-        public AopExceptionBase(string message, string code)
+        public ExceptionBase(string message, string code)
             : this(message)
         {
             this.Code = code;
         }
 
-        public AopExceptionBase(string message, global::System.Exception innerException) : base(message, innerException) { }
+        public ExceptionBase(string message, global::System.Exception innerException) : base(message, innerException) { }
 
-        public AopExceptionBase(string message, string code, global::System.Exception innerException)
+        public ExceptionBase(string message, string code, global::System.Exception innerException)
             : this(message, innerException)
         {
             this.Code = code;

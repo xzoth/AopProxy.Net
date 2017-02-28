@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("AopProxy.NET")]
+[assembly: AssemblyTitle("AopProxy")]
 [assembly: AssemblyDescription("A simple .NET AOP component that make by dynamic proxy.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AopProxy.NET")]
+[assembly: AssemblyProduct("AopProxy.Net")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
