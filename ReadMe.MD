@@ -1,20 +1,18 @@
 # AopProxy.NET
 ##### A simple .NET AOP component that make by dynamic proxy.
 
----
+------
 
 ## Requirements
 .NET Framework 4.5
 
 ## Quick Start
 1. Install nuget package
-
 ```
 Install-Package AopProxy.Net
 ```
 
 2. Define an advice
-
 ```
 public class BeforeAdvice : IBeforeAdvice
 {
@@ -26,7 +24,6 @@ public class BeforeAdvice : IBeforeAdvice
 ```
 
 3. Define ur Logic Method you wanna to intercept
-
 
 ```
 public interface ILogic
@@ -47,7 +44,6 @@ public class LogicObject : ILogic
 ```
 
 4. Configuration in ur App.config/Web.config
-
 ```
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
@@ -62,8 +58,7 @@ public class LogicObject : ILogic
 </configuration>
 ```
 
-That's IT!
-
+**That's IT!**
 ```
 static void Main(string[] args)
 {
@@ -75,6 +70,30 @@ static void Main(string[] args)
 ```
 
 ![image](https://github.com/xzoth/AopProxy.Net/blob/master/Screenshot/quickStart.png?raw=true)
+
+
+## Concept
+
+### Advice
+
+### JoinPoint
+
+### PointCut
+
+### Advisor
+
+
+### Implement principle
+#### Dymanic Proxy in .NET
+#### Real Proxy Class
+
+
+### AopProxy
+### AopProxyFactory
+### InterceptorContext
+### JoinPointAttribute
+
+
 
 ## License
 New BSD License
