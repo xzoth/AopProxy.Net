@@ -1,6 +1,11 @@
 # AopProxy.NET
 ##### A simple .NET AOP component that make by dynamic proxy.
 
+项目地址
+https://github.com/xzoth/AopProxy.Net  
+Nuget地址
+https://www.nuget.org/packages/AopProxy.Net
+
 ------
 
 ## Requirements
@@ -8,11 +13,13 @@
 
 ## Quick Start
 1. Install nuget package  
+
 ```
 Install-Package AopProxy.Net
 ```
 
 2. Define an advice  
+
 ```
 public class BeforeAdvice : IBeforeAdvice
 {
@@ -24,6 +31,7 @@ public class BeforeAdvice : IBeforeAdvice
 ```
 
 3. Define ur Logic Method you wanna to intercept  
+
 ```
 public interface ILogic
 {
@@ -43,6 +51,7 @@ public class LogicObject : ILogic
 ```
 
 4. Configuration in ur App.config/Web.config  
+
 ```
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
@@ -58,6 +67,7 @@ public class LogicObject : ILogic
 ```
 
 **That's IT!**  
+
 ```
 static void Main(string[] args)
 {
