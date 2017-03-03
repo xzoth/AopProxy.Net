@@ -11,7 +11,6 @@
 ```
 Install-Package AopProxy.Net
 ```
-
 2. Define an advice  
 ```
 public class BeforeAdvice : IBeforeAdvice
@@ -22,7 +21,6 @@ public class BeforeAdvice : IBeforeAdvice
     }
 }
 ```
-
 3. Define ur Logic Method you wanna to intercept  
 ```
 public interface ILogic
