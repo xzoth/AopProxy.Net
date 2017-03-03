@@ -1,24 +1,69 @@
-#AopProxy.NET
+# AopProxy.NET
+##### A simple .NET AOP component that make by dynamic proxy.
+
+---
+
+## Requirements
+.NET Framework 4.5
+## Quick Start
+1. Install nuget package
+```
+Install-Package AopProxy.Net
+```
+2. Define an advice
+
+```
+public class BeforeAdvice : IBeforeAdvice
+{
+    public void BeforeInvoke(InterceptorContext context)
+    {
+        Console.WriteLine("before enter method oh yeah");
+    }
+}
+```
+3. Define ur Logic Method you wanna to intercept
 
 
-A simple .NET AOP component that make by dynamic proxy.
-----
+```
+public interface ILogic
+{
+    int Add(int a, int b);
+}
+public class LogicObject : ILogic
+{
+    public LogicObject() { }
 
-##Requirements
-
-##Usage
-1.install nuget package
- 
-    Install-Package AopProxy.Net
-
-2.define an advice
-
-
-3.config file
+    [JoinPoint]
+    public int Add(int a, int b)
+    {
+        var result = a + b;
+        Console.WriteLine("Result is: {0}", result);
+    }
+}
+```
 
 
+4. Configuration in ur App.config/Web.config
 
-##License
+```
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <section name="AopProxy" type="AopProxy.AOP.Config.AopProxyConfigSectionHandler, AopProxy" />
+  </configSections>
+  <AopProxy>
+    <Advisors>
+      <Advisor PointCutType="AopProxy.AOP.Attribute.JoinPointAttribute, AopProxy" AdviseType="Demo.Advice.BeforeAdvice, Demo" />
+    </Advisors>
+  </AopProxy>
+</configuration>
+```
+
+That's IT!
+
+![image](https://github.com/xzoth/AopProxy.Net/blob/master/Screenshot/quickStart.png?raw=true)
+
+## License
 New BSD License
 
 Copyright (c) 2017, All rights reserved.  
