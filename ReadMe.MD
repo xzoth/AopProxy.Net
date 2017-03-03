@@ -5,11 +5,14 @@
 
 ## Requirements
 .NET Framework 4.5
+
 ## Quick Start
 1. Install nuget package
+
 ```
 Install-Package AopProxy.Net
 ```
+
 2. Define an advice
 
 ```
@@ -21,6 +24,7 @@ public class BeforeAdvice : IBeforeAdvice
     }
 }
 ```
+
 3. Define ur Logic Method you wanna to intercept
 
 
@@ -42,7 +46,6 @@ public class LogicObject : ILogic
 }
 ```
 
-
 4. Configuration in ur App.config/Web.config
 
 ```
@@ -60,6 +63,16 @@ public class LogicObject : ILogic
 ```
 
 That's IT!
+
+```
+static void Main(string[] args)
+{
+    ILogic obj = AopProxyFactory.GetProxy<ILogic, LogicObject>();
+    obj.Add(3, 3);
+
+    Console.Read();
+}
+```
 
 ![image](https://github.com/xzoth/AopProxy.Net/blob/master/Screenshot/quickStart.png?raw=true)
 
