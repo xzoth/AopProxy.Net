@@ -66,7 +66,7 @@ public class LogicObject : ILogic
 </configuration>
 ```
 
-**That's IT!**  
+**That's it!**  
 
 ```
 static void Main(string[] args)
