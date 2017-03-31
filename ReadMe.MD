@@ -1,12 +1,10 @@
 # AopProxy.NET
 ##### A simple .NET AOP component that make by dynamic proxy.
 
-项目地址
-https://github.com/xzoth/AopProxy.Net  
-Nuget地址
-https://www.nuget.org/packages/AopProxy.Net
-
 [![Build status](https://ci.appveyor.com/api/projects/status/ehqpox17oc2pai5v?svg=true)](https://ci.appveyor.com/project/xzoth/aopproxy-net)
+
+Nuget
+https://www.nuget.org/packages/AopProxy.Net
 
 ------
 
