@@ -71,7 +71,7 @@ namespace AopProxy.AOP
             Type interfaceType = typeof(T);
             if (!interfaceType.IsInterface)
             {
-                throw new Exception("Interface Only");
+                throw new Exception("T Interface Only");
             }
 
             Assembly[] asss = AppDomain.CurrentDomain.GetAssemblies();
@@ -102,7 +102,7 @@ namespace AopProxy.AOP
 
         public static Type LoadType(string typeString)
         {
-            return Type.GetType(typeString, true, true);
+            return Type.GetType(typeString, true, false);
         }
     }
 }
