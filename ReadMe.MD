@@ -6,6 +6,8 @@ https://github.com/xzoth/AopProxy.Net
 Nugetµÿ÷∑
 https://www.nuget.org/packages/AopProxy.Net
 
+[![Build status](https://ci.appveyor.com/api/projects/status/ehqpox17oc2pai5v?svg=true)](https://ci.appveyor.com/project/xzoth/aopproxy-net)
+
 ------
 
 ## Requirements
@@ -17,6 +19,7 @@ https://www.nuget.org/packages/AopProxy.Net
 ```
 Install-Package AopProxy.Net
 ```
+
 2. Define an advice  
 
 ```
@@ -28,6 +31,7 @@ public class BeforeAdvice : IBeforeAdvice
     }
 }
 ```
+
 3. Define ur Logic Method you wanna to intercept  
 
 ```
@@ -79,7 +83,7 @@ static void Main(string[] args)
 ![image](https://github.com/xzoth/AopProxy.Net/blob/master/Screenshot/quickStart.png?raw=true)
 
 
-## Concept
+## Concepts
 
 ### Advice
 
