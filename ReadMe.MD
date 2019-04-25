@@ -2,6 +2,7 @@
 ##### A simple .NET AOP component that make by dynamic proxy.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/ehqpox17oc2pai5v?svg=true)](https://ci.appveyor.com/project/xzoth/aopproxy-net)
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 
 Nuget
 https://www.nuget.org/packages/AopProxy.Net
@@ -104,7 +105,7 @@ static void Main(string[] args)
 
 ## License
 New BSD License
-
+[![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 Copyright (c) 2017, All rights reserved.  
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:  
